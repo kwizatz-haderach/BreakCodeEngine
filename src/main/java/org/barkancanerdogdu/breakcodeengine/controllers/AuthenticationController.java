@@ -19,7 +19,7 @@ public class AuthenticationController {
     @PostMapping("/auth")
     public String handleLogin(@RequestParam String username, @RequestParam String password, Model model) {
         if ("admin".equals(username) && "password".equals(password)) {
-            return "redirect:/dashboard";
+            return "dashboard";
         } else {
             model.addAttribute("error", "Invalid username or password");
             return "login";

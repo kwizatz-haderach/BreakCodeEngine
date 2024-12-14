@@ -22,6 +22,13 @@ public class UserService {
         return userRepository.findByUsername(username);
     }
 
+    public boolean validateUser(String username, String password) {
+        User user = userRepository.findByUsername(username);
+        return user != null && user.getPassword().equals(password);
+    }
+
+
+
     public void save(User user) {
         if (findByUsername(user.getUsername()) == null) {
             userRepository.save(user);

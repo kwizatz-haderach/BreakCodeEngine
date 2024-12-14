@@ -29,8 +29,8 @@ public class AuthenticationController {
 
     @PostMapping("/auth")
     public String handleLogin(@RequestParam String username, @RequestParam String password, Model model) {
-        if(userService.validateUser(username,password)){
-            return "redirect:/dashboard";
+        if (userService.validateUser(username, password)) {
+            return "dashboard";
         } else {
             model.addAttribute("error", "Invalid username or password");
             return "login";
@@ -41,7 +41,7 @@ public class AuthenticationController {
     public String handleInsecureAuth(@RequestParam String username, String password, Model model) {
         User user = insecureAuthenticationService.authenticate(username, password);
         if (user != null) {
-            return "redirect:/dashboard";
+            return "dashboard";
         } else {
             model.addAttribute("error", "Invalid username or password");
             return "login";

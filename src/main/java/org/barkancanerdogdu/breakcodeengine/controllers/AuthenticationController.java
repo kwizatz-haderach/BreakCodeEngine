@@ -41,7 +41,7 @@ public class AuthenticationController {
     public String handleInsecureAuth(@RequestParam String username, String password, Model model) {
         User user = insecureAuthenticationService.authenticate(username, password);
         if (user != null) {
-            return "dashboard";
+            return "redirect:/dashboard";
         } else {
             model.addAttribute("error", "Invalid username or password");
             return "login";

@@ -1,10 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Dashboard</title>
 </head>
 <body>
 <h1>Welcome to the Dashboard!</h1>
 <p>This is the dashboard page.</p>
+
+<!-- Comment List -->
+<h2>Comments</h2>
+<ul>
+    <!-- Yorumları listele -->
+    <li th:each="comment : ${comments}" th:utext="${comment.text}"></li>
+</ul>
+
+<!-- Comment Form -->
+<h2>Leave a Comment</h2>
+<form th:action="@{/dashboard/comment}" method="post">
+    <label for="comment">Comment:</label>
+    <textarea id="comment" name="comment" required></textarea>
+    <br>
+    <button type="submit">Submit</button>
+</form>
+
+<!-- Hata mesajı -->
+<p th:if="${error}" th:text="${error}"></p>
+
 </body>
 </html>

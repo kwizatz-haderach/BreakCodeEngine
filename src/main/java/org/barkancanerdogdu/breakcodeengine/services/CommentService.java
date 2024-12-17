@@ -30,6 +30,10 @@ public class CommentService {
     }
 
     public List<Comment> getAllComments() {
+        List<Comment> comments = commentRepository.findAll();
+        comments.forEach(comment -> {
+            comment.setText(policy.sanitize(comment.getText()));
+        });
         return commentRepository.findAll();
     }
 }

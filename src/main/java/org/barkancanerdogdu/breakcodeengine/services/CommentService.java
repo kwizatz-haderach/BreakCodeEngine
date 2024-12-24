@@ -11,13 +11,13 @@ import java.util.List;
 @Service
 public class CommentService {
     private final CommentRepository commentRepository;
-
-    PolicyFactory policy = new HtmlPolicyBuilder()
+    //XSS Sanitization
+    /*PolicyFactory policy = new HtmlPolicyBuilder()
             .allowElements("a")
             .allowUrlProtocols("https")
             .allowAttributes("href").onElements("a")
             .requireRelNofollowOnLinks()
-            .toFactory();
+            .toFactory();*/
 
     public CommentService(CommentRepository commentRepository) {
         this.commentRepository = commentRepository;
@@ -25,15 +25,18 @@ public class CommentService {
 
     public Comment saveComment(String text) {
         Comment comment = new Comment();
-        comment.setText(policy.sanitize(text));
+        //XSS Sanitization
+        /*comment.setText(policy.sanitize(text));*/
+        comment.setText(text);
         return commentRepository.save(comment);
     }
 
     public List<Comment> getAllComments() {
-        List<Comment> comments = commentRepository.findAll();
+        //XSS Sanitization
+        /*List<Comment> comments = commentRepository.findAll();
         comments.forEach(comment -> {
             comment.setText(policy.sanitize(comment.getText()));
-        });
+        });*/
         return commentRepository.findAll();
     }
 }

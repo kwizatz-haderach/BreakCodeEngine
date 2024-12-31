@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class CommentService {
+public class CommentService {//beef_control_panel_workshop
     private final CommentRepository commentRepository;
     //XSS Sanitization
     /*PolicyFactory policy = new HtmlPolicyBuilder()

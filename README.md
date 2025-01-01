@@ -31,3 +31,6 @@ break_code_engine=# \dt
 (2 rows)
 
 break_code_engine=# 
+
+
+<img width="918" alt="Screenshot 2025-01-01 at 17 37 28" src="https://github.com/user-attachments/assets/571d655c-3f5d-47c5-80b7-800bebd5858a" />

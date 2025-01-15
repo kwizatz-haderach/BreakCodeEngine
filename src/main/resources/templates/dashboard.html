@@ -10,11 +10,18 @@
 <!-- Comment List -->
 <h2>Comments</h2>
 <ul>
-    <!-- Yorumları listele -->
-    <li th:each="comment : ${comments}" th:utext="${comment.text}"></li>
+    <!-- List comments -->
+    <li th:each="comment : ${comments}">
+        <span th:utext="${comment.text}"></span>
+        <!-- Delete comment button -->
+        <form th:action="@{/delete-comment}" method="post" style="display:inline;">
+            <input type="hidden" name="commentId" th:value="${comment.id}">
+            <button type="submit">Delete</button>
+        </form>
+    </li>
 </ul>
 
-<!-- Comment Form -->
+<!-- Comment Submit Form -->
 <h2>Leave a Comment</h2>
 <form th:action="@{/dashboard/comment}" method="post">
     <label for="comment">Comment:</label>

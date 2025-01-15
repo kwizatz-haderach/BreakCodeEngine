@@ -31,5 +31,14 @@ public class DashboardController {
         return "dashboard";
     }
 
+    @PostMapping("/delete-comment")
+    public String deleteComment(@RequestParam Long commentId, Model model) {
+        commentService.deleteComment(commentId);
+        System.out.println("Comment with ID " + commentId + " has been deleted.");
+        List<Comment> comments = commentService.getAllComments();
+        model.addAttribute("comments", comments);
+        return "redirect:/dashboard";
+    }
+
 
 }

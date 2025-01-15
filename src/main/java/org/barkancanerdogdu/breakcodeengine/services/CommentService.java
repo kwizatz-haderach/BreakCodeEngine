@@ -39,4 +39,8 @@ public class CommentService {//beef_control_panel_workshop
         });*/
         return commentRepository.findAll();
     }
+
+    public void deleteComment(Long id) {
+        commentRepository.deleteById(id);
+    }
 }

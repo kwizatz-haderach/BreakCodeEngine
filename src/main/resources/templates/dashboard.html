@@ -7,6 +7,9 @@
 <h1>Welcome to the Dashboard!</h1>
 <p>This is the dashboard page.</p>
 
+<!-- Fetch Page Butonu -->
+<button onclick="window.location.href='/fetch-page'">Go to Fetch Page</button>
+
 <!-- Comment List -->
 <h2>Comments</h2>
 <ul>
@@ -30,7 +33,7 @@
     <button type="submit">Submit</button>
 </form>
 
-<!-- Hata mesajı -->
+<!-- Error Message -->
 <p th:if="${error}" th:text="${error}"></p>
 
 </body>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paragraph Generator</title>
+    <script>
+        function fetchData() {
+            var numOfParag = document.getElementById("numOfParag").value;
+
+            // Fetch API ile backend'e GET isteği gönder
+            fetch(`/fetch?numOfParag=${numOfParag}`)
+                .then(response => response.text()) // Yanıtı text olarak al
+                .then(data => {
+                    document.getElementById("result").innerHTML = data; // Yanıtı sayfaya bas
+                })
+                .catch(error => {
+                    console.error("Error:", error);
+                    document.getElementById("result").innerHTML = "An error occurred.";
+                });
+        }
+    </script>
+</head>
+<body>
+<h2>Paragraph Generator</h2>
+<label for="numOfParag">Enter Number of Paragraphs:</label>
+<input type="number" id="numOfParag" min="1" max="10" value="3">
+<button onclick="fetchData()">Generate</button>
+
+<h3>Generated Text:</h3>
+<div id="result" style="border:1px solid #ccc; padding:10px; margin-top:10px;"></div>
+
+<!-- Button to go back to dashboard -->
+<form th:action="@{/dashboard}" method="get">
+    <button type="submit">Back to Dashboard</button>
+</form>
+
+</body>
+</html>

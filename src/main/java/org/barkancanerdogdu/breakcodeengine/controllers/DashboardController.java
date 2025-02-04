@@ -31,6 +31,11 @@ public class DashboardController {
         return "dashboard";
     }
 
+    @GetMapping("/fetch-page")
+    public String showFetchPage() {
+        return "fetch";
+    }
+
     @PostMapping("/delete-comment")
     public String deleteComment(@RequestParam Long commentId, Model model) {
         commentService.deleteComment(commentId);

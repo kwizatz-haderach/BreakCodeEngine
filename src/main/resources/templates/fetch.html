@@ -7,12 +7,10 @@
     <script>
         function fetchData() {
             var numOfParag = document.getElementById("numOfParag").value;
-
-            // Fetch API ile backend'e GET isteği gönder
             fetch(`/fetch?numOfParag=${numOfParag}`)
-                .then(response => response.text()) // Yanıtı text olarak al
+                .then(response => response.text())
                 .then(data => {
-                    document.getElementById("result").innerHTML = data; // Yanıtı sayfaya bas
+                    document.getElementById("result").innerHTML = data;
                 })
                 .catch(error => {
                     console.error("Error:", error);
@@ -30,7 +28,6 @@
 <h3>Generated Text:</h3>
 <div id="result" style="border:1px solid #ccc; padding:10px; margin-top:10px;"></div>
 
-<!-- Button to go back to dashboard -->
 <form th:action="@{/dashboard}" method="get">
     <button type="submit">Back to Dashboard</button>
 </form>

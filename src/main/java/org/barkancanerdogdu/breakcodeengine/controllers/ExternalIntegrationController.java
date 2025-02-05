@@ -34,30 +34,11 @@ public class ExternalIntegrationController {
 
     @PostMapping("/upload-xml")
     public ResponseEntity<String> uploadXml(@RequestBody String xmlData) {
-//        try {
-//            // XML verisini bir Document olarak parse et (GÜVENSİZ!)
-//            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-//            DocumentBuilder builder = factory.newDocumentBuilder();
-//            builder.parse(new InputSource(new StringReader(xmlData)));
-//
-//            return ResponseEntity.ok("XML processed successfully");
-//        } catch (Exception e) {
-//            return ResponseEntity.internalServerError().body("Error: " + e.getMessage());
-//        }
-
         try {
-            // XXE'ye açık DocumentBuilderFactory
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-//            factory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", false);
-//            factory.setFeature("http://xml.org/sax/features/external-general-entities", true);
-//            factory.setFeature("http://xml.org/sax/features/external-parameter-entities", true);
-
             DocumentBuilder builder = factory.newDocumentBuilder();
             org.w3c.dom.Document document = builder.parse(new InputSource(new StringReader(xmlData)));
-
-            // XML içindeki veriyi String olarak döndür
             String extractedValue = document.getElementsByTagName("name").item(0).getTextContent();
-
             return ResponseEntity.ok("Extracted Value: " + extractedValue);
         } catch (Exception e) {
             return ResponseEntity.internalServerError().body("Error: " + e.getMessage());

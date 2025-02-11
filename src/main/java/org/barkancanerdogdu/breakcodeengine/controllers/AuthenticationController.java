@@ -30,7 +30,7 @@ public class AuthenticationController {
     @PostMapping("/auth")
     public String handleLogin(@RequestParam String username, @RequestParam String password, Model model) {
         if (userService.validateUser(username, password)) {
-            return "dashboard";
+            return "redirect:/dashboard";
         } else {
             model.addAttribute("error", "Invalid username or password");
             return "login";

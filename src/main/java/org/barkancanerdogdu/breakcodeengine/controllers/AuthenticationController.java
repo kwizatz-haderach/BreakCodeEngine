@@ -1,5 +1,6 @@
 package org.barkancanerdogdu.breakcodeengine.controllers;
 
+import jakarta.servlet.http.HttpSession;
 import org.barkancanerdogdu.breakcodeengine.entities.User;
 import org.barkancanerdogdu.breakcodeengine.services.InsecureAuthenticationService;
 import org.barkancanerdogdu.breakcodeengine.services.UserService;
@@ -28,8 +29,9 @@ public class AuthenticationController {
     }
 
     @PostMapping("/auth")
-    public String handleLogin(@RequestParam String username, @RequestParam String password, Model model) {
+    public String handleLogin(@RequestParam String username, @RequestParam String password, Model model, HttpSession session) {
         if (userService.validateUser(username, password)) {
+            session.setAttribute("username", username);
             return "redirect:/dashboard";
         } else {
             model.addAttribute("error", "Invalid username or password");

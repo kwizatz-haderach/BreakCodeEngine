@@ -6,6 +6,7 @@
 <body>
 <h1>Welcome to the Dashboard!</h1>
 <p>This is the dashboard page.</p>
+<p th:if="${username}" th:text="'Welcome, ' + ${username}"></p>
 
 <!-- Fetch Page Butonu -->
 <button onclick="window.location.href='/fetch-page'">Go to Fetch Page</button>

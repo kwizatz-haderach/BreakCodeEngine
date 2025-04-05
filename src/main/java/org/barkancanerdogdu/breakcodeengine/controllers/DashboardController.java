@@ -1,5 +1,6 @@
 package org.barkancanerdogdu.breakcodeengine.controllers;
 
+import jakarta.servlet.http.HttpSession;
 import org.barkancanerdogdu.breakcodeengine.entities.Comment;
 import org.barkancanerdogdu.breakcodeengine.services.CommentService;
 import org.springframework.stereotype.Controller;
@@ -25,7 +26,12 @@ public class DashboardController {
     }
 
     @GetMapping("/dashboard")
-    public String showDashboard(Model model) {
+    public String showDashboard(Model model, HttpSession session) {
+        String username = (String) session.getAttribute("username");
+        if (username == null) {
+            return "redirect:/login";
+        }
+        model.addAttribute("username", username);
         List<Comment> comments = commentService.getAllComments();
         model.addAttribute("comments", comments);
         return "dashboard";

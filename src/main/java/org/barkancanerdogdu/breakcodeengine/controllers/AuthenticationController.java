@@ -40,9 +40,10 @@ public class AuthenticationController {
     }
 
     @PostMapping("/insecureauth")
-    public String handleInsecureAuth(@RequestParam String username, String password, Model model) {
+    public String handleInsecureAuth(@RequestParam String username, String password, Model model, HttpSession session) {
         User user = insecureAuthenticationService.authenticate(username, password);
         if (user != null) {
+            session.setAttribute("username", username);
             return "redirect:/dashboard";
         } else {
             model.addAttribute("error", "Invalid username or password");

@@ -27,7 +27,7 @@ public class DashboardController {
 
     @GetMapping("/dashboard")
     public String showDashboard(Model model, HttpSession session) {
-        String username = (String) session.getAttribute("username");
+            String username = (String) session.getAttribute("username");
         if (username == null) {
             return "redirect:/login";
         }
